@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Refreshed Surfaces</title>
+
+  <!-- ============================================================
+       FONTES DO GOOGLE
+       Cormorant Garamond = elegante, serifada, para títulos
+       Jost = moderna, clean, para corpo e labels
+  ============================================================ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Jost:wght@200;300;400&display=swap" rel="stylesheet" />
+
+  <!-- ============================================================
+       CSS PRINCIPAL (arquivo separado)
+  ============================================================ -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+
+  <!-- ============================================================
+       SEÇÃO 1 — PÁGINA PRINCIPAL (hero/index)
+       Ocupa 100% da altura da tela, centraliza tudo verticalmente
+  ============================================================ -->
+  <main class="hero">
+
+    <!-- ----------------------------------------------------------
+         LOGO
+         Imagem da logo centralizada no topo da composição
+    ---------------------------------------------------------- -->
+    <div class="logo-wrapper">
+      <img src="images/logo.png" alt="Refreshed Surfaces Logo" class="logo" />
+    </div>
+
+    <!-- ----------------------------------------------------------
+         CARTÕES DE NAVEGAÇÃO
+         Dois quadrados lado a lado que levam às páginas internas
+    ---------------------------------------------------------- -->
+    <div class="cards-wrapper">
+
+      <!-- Cartão 1: Architectural / Decoration -->
+      <a href="architectural.html" class="card" aria-label="Ir para Architectural / Decoration">
+        <div class="card-image-wrapper">
+          <!-- Imagem placeholder — substitua por sua foto real -->
+          <img src="images/architectural.jpg" alt="Architectural and Decoration" class="card-image" />
+          <!-- Overlay escuro que aparece no hover -->
+          <div class="card-overlay"></div>
+        </div>
+        <span class="card-label">Architectural / Decoration</span>
+      </a>
+
+      <!-- Cartão 2: Kitchen Renovation -->
+      <a href="kitchen.html" class="card" aria-label="Ir para Kitchen Renovation">
+        <div class="card-image-wrapper">
+          <!-- Imagem placeholder — substitua por sua foto real -->
+          <img src="images/kitchen.jpg" alt="Kitchen Renovation" class="card-image" />
+          <!-- Overlay escuro que aparece no hover -->
+          <div class="card-overlay"></div>
+        </div>
+        <span class="card-label">Kitchen Renovation</span>
+      </a>
+
+    </div>
+    <!-- fim .cards-wrapper -->
+
+  </main>
+  <!-- fim .hero -->
+
+</body>
+</html>

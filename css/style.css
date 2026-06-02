@@ -1,0 +1,240 @@
+/* ================================================================
+   REFRESHED SURFACES — styles.css
+   Estrutura de seções:
+   1. Variáveis globais (cores, fontes, espaçamentos)
+   2. Reset e base
+   3. Hero (página principal)
+   4. Logo
+   5. Cartões de navegação
+   6. Responsivo (mobile)
+================================================================ */
+
+
+/* ================================================================
+   SEÇÃO 1 — VARIÁVEIS GLOBAIS
+   Todas as cores, fontes e medidas principais ficam aqui.
+   Para mudar uma cor em todo o site, basta alterar aqui.
+================================================================ */
+:root {
+  /* --- Cores --- */
+  --cor-fundo:        #F0EDE8;   /* Creme quente — fundo da página */
+  --cor-texto:        #1C1C1A;   /* Quase preto — texto principal */
+  --cor-label:        #3A3A36;   /* Cinza escuro — labels dos cartões */
+  --cor-overlay:      rgba(20, 19, 17, 0.30); /* Escurecimento no hover dos cartões */
+  --cor-borda:        rgba(28, 28, 26, 0.12); /* Borda sutil dos cartões */
+
+  /* --- Fontes --- */
+  --fonte-titulo:     'Cormorant Garamond', Georgia, serif;  /* Elegante, serifada */
+  --fonte-corpo:      'Jost', sans-serif;                    /* Clean, moderna */
+
+  /* --- Tamanhos --- */
+  --logo-largura:     260px;   /* Largura da logo no desktop */
+  --card-largura:     320px;   /* Largura de cada cartão */
+  --card-altura:      400px;   /* Altura de cada cartão */
+  --card-radius:      12px;    /* Arredondamento das bordas dos cartões */
+  --gap-cards:        32px;    /* Espaço entre os dois cartões */
+  --gap-logo-cards:   56px;    /* Espaço entre a logo e os cartões */
+
+  /* --- Transições --- */
+  --transicao:        0.4s ease;
+}
+
+
+/* ================================================================
+   SEÇÃO 2 — RESET E BASE
+   Remove margens e paddings padrão do navegador,
+   e define o comportamento base de todos os elementos.
+================================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  font-family: var(--fonte-corpo);
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased; /* Suaviza as fontes no Mac/iOS */
+  text-rendering: optimizeLegibility;
+}
+
+/* Remove decoração de links */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Imagens não excedem o container */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+
+/* ================================================================
+   SEÇÃO 3 — HERO (página principal)
+   Container principal que centraliza logo + cartões
+   vertical e horizontalmente na tela toda.
+================================================================ */
+.hero {
+  min-height: 100vh;          /* Ocupa pelo menos 100% da altura da janela */
+  display: flex;
+  flex-direction: column;     /* Logo em cima, cartões embaixo */
+  align-items: center;        /* Centraliza horizontalmente */
+  justify-content: center;    /* Centraliza verticalmente */
+  padding: 48px 24px;         /* Espaçamento nas bordas para mobile */
+  gap: var(--gap-logo-cards); /* Espaço entre logo e cartões */
+}
+
+
+/* ================================================================
+   SEÇÃO 4 — LOGO
+   Wrapper e imagem da logo centralizada.
+================================================================ */
+
+/* Wrapper da logo — controla o tamanho e centralização */
+.logo-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Imagem da logo */
+.logo {
+  width: var(--logo-largura);
+  height: auto;               /* Mantém proporção original */
+  object-fit: contain;
+}
+
+
+/* ================================================================
+   SEÇÃO 5 — CARTÕES DE NAVEGAÇÃO
+   Dois cartões lado a lado com imagem, overlay e label.
+================================================================ */
+
+/* Container que agrupa os dois cartões */
+.cards-wrapper {
+  display: flex;
+  flex-direction: row;        /* Lado a lado no desktop */
+  gap: var(--gap-cards);
+  align-items: flex-start;
+}
+
+/* ------ Cartão individual ------ */
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;                  /* Espaço entre a imagem e o label */
+  cursor: pointer;
+  width: var(--card-largura);
+}
+
+/* ------ Área da imagem (com overflow hidden para o arredondamento funcionar) ------ */
+.card-image-wrapper {
+  width: 100%;
+  height: var(--card-altura);
+  border-radius: var(--card-radius);
+  overflow: hidden;           /* Garante que a imagem respeite o border-radius */
+  position: relative;         /* Necessário para posicionar o overlay */
+  border: 1px solid var(--cor-borda);
+
+  /* Sombra sutil para dar profundidade */
+  box-shadow: 0 4px 24px rgba(28, 28, 26, 0.08);
+
+  /* Transição suave de sombra no hover */
+  transition: box-shadow var(--transicao), transform var(--transicao);
+}
+
+/* Leve levantamento do cartão ao passar o mouse */
+.card:hover .card-image-wrapper {
+  box-shadow: 0 12px 40px rgba(28, 28, 26, 0.16);
+  transform: translateY(-4px);
+}
+
+/* ------ Imagem dentro do cartão ------ */
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;          /* Preenche o espaço sem distorcer */
+  transition: transform var(--transicao);
+
+  /* Placeholder enquanto não há imagem real:
+     um fundo neutro para visualizar a estrutura */
+  background-color: #D9D4CC;
+}
+
+/* Leve zoom na imagem ao hover */
+.card:hover .card-image {
+  transform: scale(1.04);
+}
+
+/* ------ Overlay escuro que aparece no hover ------ */
+.card-overlay {
+  position: absolute;
+  inset: 0;                   /* Cobre toda a área do wrapper */
+  background-color: var(--cor-overlay);
+  opacity: 0;                 /* Invisível por padrão */
+  transition: opacity var(--transicao);
+  border-radius: var(--card-radius);
+}
+
+/* Overlay aparece ao hover */
+.card:hover .card-overlay {
+  opacity: 1;
+}
+
+/* ------ Label abaixo do cartão ------ */
+.card-label {
+  font-family: var(--fonte-corpo);
+  font-weight: 300;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;     /* Espaçamento entre letras para elegância */
+  text-transform: uppercase;
+  color: var(--cor-label);
+  transition: color var(--transicao);
+}
+
+/* Label fica mais escuro no hover */
+.card:hover .card-label {
+  color: var(--cor-texto);
+}
+
+
+/* ================================================================
+   SEÇÃO 6 — RESPONSIVO (mobile)
+   Adaptações para telas com até 700px de largura.
+   Os cartões empilham verticalmente no celular.
+================================================================ */
+@media (max-width: 700px) {
+
+  /* Cartões um embaixo do outro no mobile */
+  .cards-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+  }
+
+  /* Cartão ocupa quase toda a largura da tela */
+  .card {
+    width: min(var(--card-largura), 90vw);
+  }
+
+  /* Logo um pouco menor no mobile */
+  .logo {
+    width: 200px;
+  }
+
+  /* Menos espaço entre logo e cartões no mobile */
+  .hero {
+    gap: 40px;
+    padding: 40px 20px;
+  }
+}
