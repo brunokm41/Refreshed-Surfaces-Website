@@ -171,7 +171,7 @@ ul { list-style: none; }
   padding: 20px 32px;
 }
 
-.nav-logo { width: 148px; height: auto; filter: invert(1) sepia(0.1) brightness(0.88); transition: opacity 0.3s; }
+.nav-logo { width: 148px; height: auto; transition: opacity 0.3s; }
 .nav-logo:hover { opacity: 0.75; }
 
 .nav-links { display: flex; align-items: center; gap: 28px; }
@@ -563,7 +563,7 @@ ul { list-style: none; }
   display: flex; align-items: center; justify-content: space-between;
   gap: 20px; flex-wrap: wrap;
 }
-.footer-logo { width: 110px; filter: invert(1) sepia(0.1) brightness(0.55); opacity: 0.5; }
+.footer-logo { width: 110px; opacity: 0.6; }
 .footer-copy { font-size: 0.72rem; font-weight: 400; letter-spacing: 0.1em; color: var(--text-muted); }
 .footer-links { display: flex; gap: 20px; }
 .footer-link { font-size: 0.72rem; font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); transition: color var(--tr); }
