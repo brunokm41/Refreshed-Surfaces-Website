@@ -3,72 +3,369 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Refreshed Surfaces</title>
-
-  <!-- ============================================================
-       FONTES DO GOOGLE
-       Cormorant Garamond = elegante, serifada, para títulos
-       Jost = moderna, clean, para corpo e labels
-  ============================================================ -->
+  <title>Refreshed Surfaces — Surface Transformation Specialists</title>
+  <meta name="description" content="Premium vinyl surface transformation for kitchens and architectural spaces. Serving North Island, New Zealand." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Jost:wght@200;300;400&display=swap" rel="stylesheet" />
-
-  <!-- ============================================================
-       CSS PRINCIPAL (arquivo separado)
-  ============================================================ -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
-
 <body>
 
   <!-- ============================================================
-       SEÇÃO 1 — PÁGINA PRINCIPAL (hero/index)
-       Ocupa 100% da altura da tela, centraliza tudo verticalmente
+       NAVBAR
   ============================================================ -->
-  <main class="hero">
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <ul class="nav-links nav-links--left">
+        <li><a href="#services" class="nav-link">Services</a></li>
+        <li><a href="#transformations" class="nav-link">Transformations</a></li>
+      </ul>
+      <a href="#hero" class="nav-logo-wrap">
+        <img src="images/logo.svg" alt="Refreshed Surfaces" class="nav-logo" />
+      </a>
+      <ul class="nav-links nav-links--right">
+        <li><a href="#work" class="nav-link">Our Work</a></li>
+        <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+      </ul>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="navMobile">
+      <a href="#services" class="nav-mobile-link">Services</a>
+      <a href="#transformations" class="nav-mobile-link">Transformations</a>
+      <a href="#work" class="nav-mobile-link">Our Work</a>
+      <a href="#contact" class="nav-mobile-link nav-mobile-cta">Get a Quote</a>
+    </div>
+  </nav>
 
-    <!-- ----------------------------------------------------------
-         LOGO
-         Imagem da logo centralizada no topo da composição
-    ---------------------------------------------------------- -->
-    <div class="logo-wrapper">
-      <img src="images/logo.png" alt="Refreshed Surfaces Logo" class="logo" />
+
+  <!-- ============================================================
+       SEÇÃO 1 — HERO
+  ============================================================ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <img src="images/after_0.jpg" alt="Kitchen transformation" class="hero-bg-img" />
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="eyebrow">Surface Transformation Specialists</span>
+      <h1 class="hero-title">Don't Replace.<br/>Refresh.</h1>
+      <p class="hero-subtitle">Premium vinyl wrapping for kitchens and architectural spaces — a smarter, more affordable way to transform any surface.</p>
+      <div class="hero-actions">
+        <a href="#services" class="btn btn--primary">Explore Services</a>
+        <a href="#transformations" class="btn btn--ghost">See Transformations</a>
+      </div>
+    </div>
+    <div class="scroll-indicator"><span class="scroll-line"></span></div>
+  </section>
+
+
+  <!-- ============================================================
+       SEÇÃO 2 — STRIP
+  ============================================================ -->
+  <section class="strip">
+    <div class="strip-inner">
+      <div class="strip-item">
+        <span class="strip-number">01</span>
+        <span class="strip-text">Cost-Effective Transformation</span>
+      </div>
+      <div class="strip-divider"></div>
+      <div class="strip-item">
+        <span class="strip-number">02</span>
+        <span class="strip-text">No Demolition Required</span>
+      </div>
+      <div class="strip-divider"></div>
+      <div class="strip-item">
+        <span class="strip-number">03</span>
+        <span class="strip-text">North Island, New Zealand</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SEÇÃO 3 — SERVICES
+  ============================================================ -->
+  <section class="services" id="services">
+    <div class="section-header">
+      <span class="eyebrow">What We Do</span>
+      <h2 class="section-title">Our Services</h2>
+    </div>
+    <div class="services-grid">
+
+      <!-- Kitchen Renovation -->
+      <div class="service-card">
+        <div class="service-img-wrap">
+          <img src="images/Kitchen_Renovation.jpg" alt="Kitchen Renovation" class="service-img" />
+        </div>
+        <div class="service-body">
+          <span class="service-tag">01</span>
+          <h3 class="service-title">Kitchen Renovation</h3>
+          <p class="service-desc">Give your kitchen a complete new look without the cost and disruption of a full renovation. We wrap cabinet doors, drawer fronts, and panels with premium vinyl — transforming the space in days, not weeks.</p>
+          <ul class="service-list">
+            <li>Cabinet & drawer wrapping</li>
+            <li>Benchtop & splashback surfaces</li>
+            <li>100+ finishes available</li>
+            <li>Fraction of replacement cost</li>
+          </ul>
+          <a href="mailto:hello@refreshed.co.nz" class="service-link">Get a Quote →</a>
+        </div>
+      </div>
+
+      <!-- Architectural / Decoration -->
+      <div class="service-card service-card--alt">
+        <div class="service-img-wrap">
+          <img src="images/architectural_decoration.jpg" alt="Architectural Decoration" class="service-img" />
+        </div>
+        <div class="service-body">
+          <span class="service-tag">02</span>
+          <h3 class="service-title">Architectural / Decoration</h3>
+          <p class="service-desc">Transform walls, doors, furniture, lifts, reception counters and commercial spaces with decorative vinyl film. The simplest and most affordable way to completely change the feel of any environment — residential or commercial.</p>
+          <ul class="service-list">
+            <li>Doors, walls & panels</li>
+            <li>Lifts & reception areas</li>
+            <li>Furniture & built-ins</li>
+            <li>Hotels, offices & retail</li>
+          </ul>
+          <a href="mailto:hello@refreshed.co.nz" class="service-link">Get a Quote →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SEÇÃO 4 — BEFORE & AFTER SLIDERS
+  ============================================================ -->
+  <section class="transformations" id="transformations">
+    <div class="section-header">
+      <span class="eyebrow">See the Difference</span>
+      <h2 class="section-title">Before & After</h2>
+      <p class="section-sub">Drag the slider to reveal the transformation</p>
     </div>
 
-    <!-- ----------------------------------------------------------
-         CARTÕES DE NAVEGAÇÃO
-         Dois quadrados lado a lado que levam às páginas internas
-    ---------------------------------------------------------- -->
-    <div class="cards-wrapper">
+    <div class="sliders-grid">
 
-      <!-- Cartão 1: Architectural / Decoration -->
-      <a href="architectural.html" class="card" aria-label="Ir para Architectural / Decoration">
-        <div class="card-image-wrapper">
-          <!-- Imagem placeholder — substitua por sua foto real -->
-          <img src="images/architectural.jpg" alt="Architectural and Decoration" class="card-image" />
-          <!-- Overlay escuro que aparece no hover -->
-          <div class="card-overlay"></div>
+      <!-- Slider 1 -->
+      <div class="slider-wrap">
+        <div class="ba-slider" data-before="images/before_0.jpg" data-after="images/after_0.jpg">
+          <div class="ba-after"><img src="images/after_0.jpg" alt="After" /></div>
+          <div class="ba-before"><img src="images/before_0.jpg" alt="Before" /></div>
+          <div class="ba-handle">
+            <div class="ba-line"></div>
+            <div class="ba-circle">
+              <span class="ba-arrow ba-arrow--left">‹</span>
+              <span class="ba-arrow ba-arrow--right">›</span>
+            </div>
+            <div class="ba-line"></div>
+          </div>
+          <span class="ba-label ba-label--before">Before</span>
+          <span class="ba-label ba-label--after">After</span>
         </div>
-        <span class="card-label">Architectural / Decoration</span>
-      </a>
+        <p class="slider-caption">Kitchen Cabinet Renovation</p>
+      </div>
 
-      <!-- Cartão 2: Kitchen Renovation -->
-      <a href="kitchen.html" class="card" aria-label="Ir para Kitchen Renovation">
-        <div class="card-image-wrapper">
-          <!-- Imagem placeholder — substitua por sua foto real -->
-          <img src="images/kitchen.jpg" alt="Kitchen Renovation" class="card-image" />
-          <!-- Overlay escuro que aparece no hover -->
-          <div class="card-overlay"></div>
+      <!-- Slider 2 -->
+      <div class="slider-wrap">
+        <div class="ba-slider" data-before="images/before_1.jpg" data-after="images/after_1.jpg">
+          <div class="ba-after"><img src="images/after_1.jpg" alt="After" /></div>
+          <div class="ba-before"><img src="images/before_1.jpg" alt="Before" /></div>
+          <div class="ba-handle">
+            <div class="ba-line"></div>
+            <div class="ba-circle">
+              <span class="ba-arrow ba-arrow--left">‹</span>
+              <span class="ba-arrow ba-arrow--right">›</span>
+            </div>
+            <div class="ba-line"></div>
+          </div>
+          <span class="ba-label ba-label--before">Before</span>
+          <span class="ba-label ba-label--after">After</span>
         </div>
-        <span class="card-label">Kitchen Renovation</span>
-      </a>
+        <p class="slider-caption">Hotel Room Renovation</p>
+      </div>
+
+      <!-- Slider 3 -->
+      <div class="slider-wrap">
+        <div class="ba-slider" data-before="images/before_4.jpg" data-after="images/after_4.jpg">
+          <div class="ba-after"><img src="images/after_4.jpg" alt="After" /></div>
+          <div class="ba-before"><img src="images/before_4.jpg" alt="Before" /></div>
+          <div class="ba-handle">
+            <div class="ba-line"></div>
+            <div class="ba-circle">
+              <span class="ba-arrow ba-arrow--left">‹</span>
+              <span class="ba-arrow ba-arrow--right">›</span>
+            </div>
+            <div class="ba-line"></div>
+          </div>
+          <span class="ba-label ba-label--before">Before</span>
+          <span class="ba-label ba-label--after">After</span>
+        </div>
+        <p class="slider-caption">Kitchen Makeover</p>
+      </div>
+
+      <!-- Slider 4 -->
+      <div class="slider-wrap">
+        <div class="ba-slider" data-before="images/before_7.jpg" data-after="images/after_7.jpg">
+          <div class="ba-after"><img src="images/after_7.jpg" alt="After" /></div>
+          <div class="ba-before"><img src="images/before_7.jpg" alt="Before" /></div>
+          <div class="ba-handle">
+            <div class="ba-line"></div>
+            <div class="ba-circle">
+              <span class="ba-arrow ba-arrow--left">‹</span>
+              <span class="ba-arrow ba-arrow--right">›</span>
+            </div>
+            <div class="ba-line"></div>
+          </div>
+          <span class="ba-label ba-label--before">Before</span>
+          <span class="ba-label ba-label--after">After</span>
+        </div>
+        <p class="slider-caption">Lift Door Transformation</p>
+      </div>
 
     </div>
-    <!-- fim .cards-wrapper -->
+  </section>
 
-  </main>
-  <!-- fim .hero -->
+
+  <!-- ============================================================
+       SEÇÃO 5 — OUR WORK (galeria)
+  ============================================================ -->
+  <section class="work" id="work">
+    <div class="section-header">
+      <span class="eyebrow">Portfolio</span>
+      <h2 class="section-title">Our Work</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item gallery-item--tall">
+        <img src="images/after_3.jpg" alt="Project" class="gallery-img" />
+      </div>
+      <div class="gallery-item">
+        <img src="images/after_5.jpg" alt="Project" class="gallery-img" />
+      </div>
+      <div class="gallery-item">
+        <img src="images/after_8.jpg" alt="Project" class="gallery-img" />
+      </div>
+      <div class="gallery-item gallery-item--wide">
+        <img src="images/after_2.jpg" alt="Project" class="gallery-img" />
+      </div>
+      <div class="gallery-item">
+        <img src="images/after_6.jpg" alt="Project" class="gallery-img" />
+      </div>
+      <div class="gallery-item">
+        <img src="images/after_1.jpg" alt="Project" class="gallery-img" />
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SEÇÃO 6 — CONTACT
+  ============================================================ -->
+  <section class="contact" id="contact">
+    <div class="contact-inner">
+      <span class="eyebrow eyebrow--light">Get In Touch</span>
+      <h2 class="contact-title">Ready to Refresh<br/>Your Space?</h2>
+      <p class="contact-sub">Based in North Island, New Zealand.<br/>Reach out for a free, no-obligation quote.</p>
+      <div class="contact-links">
+        <a href="mailto:hello@refreshed.co.nz" class="contact-link">
+          <span class="contact-link-label">Email</span>
+          <span class="contact-link-value">hello@refreshed.co.nz</span>
+        </a>
+        <div class="contact-sep"></div>
+        <a href="https://instagram.com/refreshedsurfaces" target="_blank" class="contact-link">
+          <span class="contact-link-label">Instagram</span>
+          <span class="contact-link-value">@refreshedsurfaces</span>
+        </a>
+      </div>
+      <a href="mailto:hello@refreshed.co.nz" class="btn btn--primary btn--large">Send Us a Message</a>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <img src="images/logo.svg" alt="Refreshed Surfaces" class="footer-logo" />
+      <span class="footer-copy">© 2025 Refreshed Surfaces. North Island, New Zealand.</span>
+      <div class="footer-links">
+        <a href="mailto:hello@refreshed.co.nz" class="footer-link">hello@refreshed.co.nz</a>
+        <a href="https://instagram.com/refreshedsurfaces" target="_blank" class="footer-link">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ============================================================
+       JAVASCRIPT — Navbar scroll + Hamburger + Before/After Slider
+  ============================================================ -->
+  <script>
+    /* --- Navbar: fundo sólido ao rolar --- */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('navbar--scrolled', window.scrollY > 60);
+    });
+
+    /* --- Hamburger menu --- */
+    const hamburger = document.getElementById('navHamburger');
+    const mobileMenu = document.getElementById('navMobile');
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('nav-mobile--open');
+      hamburger.classList.toggle('nav-hamburger--open');
+    });
+    document.querySelectorAll('.nav-mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('nav-mobile--open');
+        hamburger.classList.remove('nav-hamburger--open');
+      });
+    });
+
+    /* --- Before/After Slider --- */
+    document.querySelectorAll('.ba-slider').forEach(slider => {
+      const beforeDiv = slider.querySelector('.ba-before');
+      const handle    = slider.querySelector('.ba-handle');
+      let dragging    = false;
+
+      /* Define posição inicial em 50% */
+      setPosition(50);
+
+      function setPosition(pct) {
+        /* clip-path revela a parte esquerda da imagem before */
+        beforeDiv.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
+        handle.style.left = pct + '%';
+
+        /* Esconde a label "Before" quando o slider vai muito para a esquerda */
+        const labelBefore = slider.querySelector('.ba-label--before');
+        const labelAfter  = slider.querySelector('.ba-label--after');
+        labelBefore.style.opacity = pct < 15 ? '0' : '1';
+        labelAfter.style.opacity  = pct > 85 ? '0' : '1';
+      }
+
+      function getPercent(e) {
+        const rect = slider.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const pct = ((clientX - rect.left) / rect.width) * 100;
+        return Math.min(Math.max(pct, 1), 99);
+      }
+
+      /* Mouse */
+      slider.addEventListener('mousedown', e => { dragging = true; setPosition(getPercent(e)); });
+      window.addEventListener('mouseup',   () => dragging = false);
+      window.addEventListener('mousemove', e => { if (dragging) setPosition(getPercent(e)); });
+
+      /* Touch (mobile) */
+      slider.addEventListener('touchstart', e => { dragging = true; setPosition(getPercent(e)); }, { passive: true });
+      window.addEventListener('touchend',   () => dragging = false);
+      window.addEventListener('touchmove',  e => {
+        if (!dragging) return;
+        e.preventDefault();
+        setPosition(getPercent(e));
+      }, { passive: false });
+    });
+  </script>
 
 </body>
 </html>

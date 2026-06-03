@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Refreshed Surfaces</title>
+
+  <!-- ============================================================
+       FONTES DO GOOGLE
+       Tenor Sans = elegante, refinada, para labels
+       Jost = clean e moderna, para textos secundários
+  ============================================================ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Jost:wght@200;300&display=swap" rel="stylesheet" />
+
+  <!-- ============================================================
+       CSS PRINCIPAL (arquivo separado)
+  ============================================================ -->
+  <link rel="stylesheet" href="css/styles-opening.css" />
+</head>
+
+<body>
+
+  <!-- ============================================================
+       SEÇÃO 1 — PÁGINA PRINCIPAL
+       Tela cheia, fundo escuro, conteúdo centralizado
+  ============================================================ -->
+  <main class="hero">
+
+    <!-- Textura de grain sutil no fundo -->
+    <div class="grain"></div>
+
+    <!-- ----------------------------------------------------------
+         LOGO
+         SVG invertido para branco via CSS
+    ---------------------------------------------------------- -->
+    <div class="logo-wrapper">
+      <img src="images/logo.svg" alt="Refreshed Surfaces" class="logo" />
+    </div>
+
+    <!-- ----------------------------------------------------------
+         CARTÕES DE NAVEGAÇÃO
+         Dois cards lado a lado com gap entre eles
+    ---------------------------------------------------------- -->
+    <div class="cards-wrapper">
+
+      <!-- Cartão 1: Architectural / Decoration -->
+      <a href="architectural.html" class="card">
+        <div class="card-image-wrapper">
+          <img src="images/architectural.jpg" alt="Architectural and Decoration" class="card-image" />
+          <div class="card-overlay">
+            <span class="card-overlay-text">Explore</span>
+          </div>
+        </div>
+        <!-- Label centralizado abaixo da imagem, sem seta -->
+        <span class="card-label">Architectural / Decoration</span>
+      </a>
+
+      <!-- Cartão 2: Kitchen Renovation -->
+      <a href="kitchen.html" class="card">
+        <div class="card-image-wrapper">
+          <img src="images/kitchen.jpg" alt="Kitchen Renovation" class="card-image" />
+          <div class="card-overlay">
+            <span class="card-overlay-text">Explore</span>
+          </div>
+        </div>
+        <!-- Label centralizado abaixo da imagem, sem seta -->
+        <span class="card-label">Kitchen Renovation</span>
+      </a>
+
+    </div>
+    <!-- fim .cards-wrapper -->
+
+    <!-- Rodapé discreto -->
+    <footer class="page-footer">
+      <span>Transforming Spaces with Precision</span>
+    </footer>
+
+  </main>
+
+</body>
+</html>

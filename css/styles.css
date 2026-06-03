@@ -1,240 +1,613 @@
 /* ================================================================
    REFRESHED SURFACES — styles.css
-   Estrutura de seções:
-   1. Variáveis globais (cores, fontes, espaçamentos)
-   2. Reset e base
-   3. Hero (página principal)
-   4. Logo
-   5. Cartões de navegação
-   6. Responsivo (mobile)
+   Tema: Dark Warm — carvão suave, ouro, texto legível
+   Fontes: Cormorant Garamond (títulos) + DM Sans (corpo)
+   Seções:
+   1.  Variáveis globais
+   2.  Reset e base
+   3.  Utilitários
+   4.  Navbar
+   5.  Hero
+   6.  Strip
+   7.  Services
+   8.  Before & After Sliders
+   9.  Our Work (galeria)
+   10. Contact
+   11. Footer
+   12. Animações
+   13. Responsivo mobile
 ================================================================ */
 
 
 /* ================================================================
    SEÇÃO 1 — VARIÁVEIS GLOBAIS
-   Todas as cores, fontes e medidas principais ficam aqui.
-   Para mudar uma cor em todo o site, basta alterar aqui.
 ================================================================ */
 :root {
   /* --- Cores --- */
-  --cor-fundo:        #F0EDE8;   /* Creme quente — fundo da página */
-  --cor-texto:        #1C1C1A;   /* Quase preto — texto principal */
-  --cor-label:        #3A3A36;   /* Cinza escuro — labels dos cartões */
-  --cor-overlay:      rgba(20, 19, 17, 0.30); /* Escurecimento no hover dos cartões */
-  --cor-borda:        rgba(28, 28, 26, 0.12); /* Borda sutil dos cartões */
+  /* Tema: carvão quente — menos preto, mais profundidade */
+  --bg:           #1E1E1C;      /* Fundo principal — carvão médio */
+  --bg-soft:      #252523;      /* Fundo alternado — levemente mais claro */
+  --bg-card:      #2C2C29;      /* Fundo dos cards */
+  --bg-surface:   #323230;      /* Superfícies elevadas */
+
+  --gold:         #C8A96E;      /* Ouro principal */
+  --gold-light:   #D4BA88;      /* Ouro mais claro para hovers */
+  --gold-dim:     rgba(200, 169, 110, 0.12);
+
+  --cream:        #F0EAE0;      /* Texto principal — creme quente */
+  --text-mid:     #B8B0A4;      /* Texto secundário — visível e legível */
+  --text-muted:   #7A756C;      /* Texto terciário */
+  --border:       rgba(200, 169, 110, 0.18);
+  --border-soft:  rgba(255, 255, 255, 0.07);
 
   /* --- Fontes --- */
-  --fonte-titulo:     'Cormorant Garamond', Georgia, serif;  /* Elegante, serifada */
-  --fonte-corpo:      'Jost', sans-serif;                    /* Clean, moderna */
+  --font-display: 'Cormorant Garamond', Georgia, serif; /* Títulos elegantes */
+  --font-body:    'DM Sans', sans-serif;                /* Corpo legível */
 
-  /* --- Tamanhos --- */
-  --logo-largura:     260px;   /* Largura da logo no desktop */
-  --card-largura:     320px;   /* Largura de cada cartão */
-  --card-altura:      400px;   /* Altura de cada cartão */
-  --card-radius:      12px;    /* Arredondamento das bordas dos cartões */
-  --gap-cards:        32px;    /* Espaço entre os dois cartões */
-  --gap-logo-cards:   56px;    /* Espaço entre a logo e os cartões */
-
-  /* --- Transições --- */
-  --transicao:        0.4s ease;
+  /* --- Outros --- */
+  --ease:         cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --tr:           0.35s var(--ease);
+  --max:          1200px;
+  --pad:          112px 24px;
 }
 
 
 /* ================================================================
    SEÇÃO 2 — RESET E BASE
-   Remove margens e paddings padrão do navegador,
-   e define o comportamento base de todos os elementos.
 ================================================================ */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html, body {
-  height: 100%;
-  width: 100%;
-}
-
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 body {
-  background-color: var(--cor-fundo);
-  color: var(--cor-texto);
-  font-family: var(--fonte-corpo);
-  font-weight: 300;
-  -webkit-font-smoothing: antialiased; /* Suaviza as fontes no Mac/iOS */
-  text-rendering: optimizeLegibility;
+  background-color: var(--bg);
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
-
-/* Remove decoração de links */
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-/* Imagens não excedem o container */
-img {
-  display: block;
-  max-width: 100%;
-}
+a { text-decoration: none; color: inherit; }
+img { display: block; max-width: 100%; }
+ul { list-style: none; }
 
 
 /* ================================================================
-   SEÇÃO 3 — HERO (página principal)
-   Container principal que centraliza logo + cartões
-   vertical e horizontalmente na tela toda.
+   SEÇÃO 3 — UTILITÁRIOS
+================================================================ */
+
+/* Eyebrow — label pequena acima de títulos */
+.eyebrow {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.eyebrow--light { color: rgba(200, 169, 110, 0.75); }
+
+/* Cabeçalho de seção */
+.section-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 500;
+  color: var(--cream);
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+}
+.section-sub {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--text-mid);
+}
+
+/* Botões */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 14px 32px;
+  border-radius: 3px;
+  transition: var(--tr);
+  cursor: pointer;
+}
+.btn--primary {
+  background-color: var(--gold);
+  color: #1A1A18;
+}
+.btn--primary:hover { background-color: var(--gold-light); }
+
+.btn--ghost {
+  border: 1px solid rgba(240, 234, 224, 0.3);
+  color: var(--cream);
+}
+.btn--ghost:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.btn--large { padding: 17px 48px; font-size: 0.82rem; }
+
+
+/* ================================================================
+   SEÇÃO 4 — NAVBAR
+================================================================ */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
+  background: linear-gradient(to bottom, rgba(20,20,18,0.72) 0%, transparent 100%);
+}
+.navbar--scrolled {
+  background: rgba(28, 28, 26, 0.97);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 1px 0 var(--border-soft);
+}
+
+.nav-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 32px;
+}
+
+.nav-logo { width: 148px; height: auto; filter: invert(1) sepia(0.1) brightness(0.9); transition: opacity 0.3s; }
+.nav-logo:hover { opacity: 0.75; }
+
+.nav-links { display: flex; align-items: center; gap: 28px; }
+
+.nav-link {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-mid);
+  transition: color var(--tr);
+}
+.nav-link:hover { color: var(--cream); }
+
+.nav-cta {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--border);
+  padding: 9px 20px;
+  border-radius: 3px;
+  transition: var(--tr);
+}
+.nav-cta:hover { background-color: var(--gold-dim); border-color: var(--gold); }
+
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+.nav-hamburger span { display: block; width: 22px; height: 1.5px; background-color: var(--cream); transition: var(--tr); transform-origin: center; }
+.nav-hamburger--open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-hamburger--open span:nth-child(2) { opacity: 0; }
+.nav-hamburger--open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+.nav-mobile { display: none; flex-direction: column; background: rgba(28,28,26,0.98); padding: 0 24px 20px; border-top: 1px solid var(--border-soft); overflow: hidden; max-height: 0; transition: max-height 0.4s ease; }
+.nav-mobile--open { max-height: 400px; }
+.nav-mobile-link { font-size: 0.85rem; font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-mid); padding: 15px 0; border-bottom: 1px solid var(--border-soft); transition: color var(--tr); }
+.nav-mobile-link:hover { color: var(--cream); }
+.nav-mobile-cta { color: var(--gold); border-bottom: none; }
+
+
+/* ================================================================
+   SEÇÃO 5 — HERO
 ================================================================ */
 .hero {
-  min-height: 100vh;          /* Ocupa pelo menos 100% da altura da janela */
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 620px;
   display: flex;
-  flex-direction: column;     /* Logo em cima, cartões embaixo */
-  align-items: center;        /* Centraliza horizontalmente */
-  justify-content: center;    /* Centraliza verticalmente */
-  padding: 48px 24px;         /* Espaçamento nas bordas para mobile */
-  gap: var(--gap-logo-cards); /* Espaço entre logo e cartões */
-}
-
-
-/* ================================================================
-   SEÇÃO 4 — LOGO
-   Wrapper e imagem da logo centralizada.
-================================================================ */
-
-/* Wrapper da logo — controla o tamanho e centralização */
-.logo-wrapper {
-  display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
+.hero-bg { position: absolute; inset: 0; z-index: 0; }
+.hero-bg-img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  filter: brightness(0.55) saturate(0.75);
+  animation: heroZoom 10s var(--ease) forwards;
+}
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(160deg, rgba(18,18,16,0.25) 0%, rgba(18,18,16,0.6) 55%, rgba(18,18,16,0.85) 100%);
+}
+.hero-content {
+  position: relative; z-index: 2;
+  text-align: center;
+  max-width: 680px;
+  padding: 0 24px;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 22px;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.4rem, 9vw, 7rem);
+  font-weight: 500;
+  line-height: 1.0;
+  color: var(--cream);
+  animation: fadeUp 0.9s ease 0.3s both;
+}
+.hero-subtitle {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.75;
+  color: var(--text-mid);
+  max-width: 440px;
+  animation: fadeUp 0.9s ease 0.5s both;
+}
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; animation: fadeUp 0.9s ease 0.7s both; }
 
-/* Imagem da logo */
-.logo {
-  width: var(--logo-largura);
-  height: auto;               /* Mantém proporção original */
-  object-fit: contain;
-}
+.scroll-indicator { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); z-index: 2; animation: fadeUp 0.9s ease 1s both; }
+.scroll-line { display: block; width: 1px; height: 48px; background: linear-gradient(to bottom, var(--gold), transparent); animation: scrollPulse 2.5s ease-in-out infinite; }
 
 
 /* ================================================================
-   SEÇÃO 5 — CARTÕES DE NAVEGAÇÃO
-   Dois cartões lado a lado com imagem, overlay e label.
+   SEÇÃO 6 — STRIP
 ================================================================ */
+.strip {
+  background-color: var(--bg-soft);
+  border-top: 1px solid var(--border-soft);
+  border-bottom: 1px solid var(--border-soft);
+}
+.strip-inner {
+  max-width: var(--max); margin: 0 auto;
+  padding: 32px 32px;
+  display: flex; align-items: center; justify-content: center;
+}
+.strip-item { display: flex; align-items: center; gap: 12px; flex: 1; justify-content: center; }
+.strip-number { font-family: var(--font-display); font-size: 0.85rem; color: var(--gold); opacity: 0.8; }
+.strip-text { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-mid); }
+.strip-divider { width: 1px; height: 28px; background-color: var(--border-soft); flex-shrink: 0; }
 
-/* Container que agrupa os dois cartões */
-.cards-wrapper {
-  display: flex;
-  flex-direction: row;        /* Lado a lado no desktop */
-  gap: var(--gap-cards);
-  align-items: flex-start;
+
+/* ================================================================
+   SEÇÃO 7 — SERVICES
+================================================================ */
+.services {
+  padding: var(--pad);
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.services-grid { display: flex; flex-direction: column; gap: 3px; }
+
+.service-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 500px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.service-card--alt { direction: rtl; }
+.service-card--alt > * { direction: ltr; }
+
+.service-img-wrap { overflow: hidden; }
+.service-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: brightness(0.85) saturate(0.9);
+  transition: transform 0.8s var(--ease), filter 0.8s ease;
+}
+.service-card:hover .service-img { transform: scale(1.04); filter: brightness(0.75); }
+
+.service-body {
+  padding: 52px 48px;
+  display: flex; flex-direction: column; justify-content: center;
+  gap: 18px;
+}
+.service-tag { font-family: var(--font-display); font-size: 0.8rem; color: var(--gold); opacity: 0.7; }
+.service-title { font-family: var(--font-display); font-size: clamp(1.7rem, 2.5vw, 2.4rem); font-weight: 500; color: var(--cream); line-height: 1.15; }
+.service-desc { font-size: 0.95rem; font-weight: 400; line-height: 1.8; color: var(--text-mid); max-width: 380px; }
+
+.service-list { display: flex; flex-direction: column; gap: 9px; }
+.service-list li {
+  font-size: 0.85rem; font-weight: 400;
+  color: var(--text-mid);
+  padding-left: 18px; position: relative;
+}
+.service-list li::before {
+  content: '';
+  position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  width: 8px; height: 1px;
+  background-color: var(--gold); opacity: 0.7;
+}
+.service-link {
+  font-size: 0.78rem; font-weight: 500; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--gold);
+  margin-top: 6px; display: inline-block;
+  transition: opacity var(--tr);
+}
+.service-link:hover { opacity: 0.7; }
+
+
+/* ================================================================
+   SEÇÃO 8 — BEFORE & AFTER SLIDERS
+================================================================ */
+.transformations {
+  padding: var(--pad);
+  background-color: var(--bg-soft);
+}
+.transformations .section-header {
+  max-width: var(--max);
+  margin: 0 auto 56px;
 }
 
-/* ------ Cartão individual ------ */
-.card {
+/* Grade com 2 sliders por linha */
+.sliders-grid {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.slider-wrap { display: flex; flex-direction: column; gap: 14px; }
+
+/* ------ Container do slider ------ */
+.ba-slider {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;       /* Proporção fixa para todas as imagens */
+  overflow: hidden;
+  border-radius: 4px;
+  cursor: ew-resize;          /* Cursor de arrastar horizontal */
+  user-select: none;
+  border: 1px solid var(--border-soft);
+  background-color: var(--bg-card);
+}
+
+/* Imagem "After" (fundo — largura total) */
+.ba-after {
+  position: absolute;
+  inset: 0;
+}
+.ba-after img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+/* Imagem "Before" — usa clip-path para revelar/esconder sem distorcer */
+.ba-before {
+  position: absolute;
+  inset: 0;
+  /* clip-path controlado por JS — começa revelando metade esquerda */
+  clip-path: inset(0 50% 0 0);
+}
+.ba-before img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+/* ------ Handle (linha + círculo central) ------ */
+.ba-handle {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 50%;                  /* Começa em 50% — controlado por JS */
+  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 18px;                  /* Espaço entre a imagem e o label */
-  cursor: pointer;
-  width: var(--card-largura);
+  z-index: 10;
+  pointer-events: none;
 }
 
-/* ------ Área da imagem (com overflow hidden para o arredondamento funcionar) ------ */
-.card-image-wrapper {
-  width: 100%;
-  height: var(--card-altura);
-  border-radius: var(--card-radius);
-  overflow: hidden;           /* Garante que a imagem respeite o border-radius */
-  position: relative;         /* Necessário para posicionar o overlay */
-  border: 1px solid var(--cor-borda);
+/* Linhas verticais acima e abaixo do círculo */
+.ba-line { flex: 1; width: 2px; background-color: rgba(255,255,255,0.9); }
 
-  /* Sombra sutil para dar profundidade */
-  box-shadow: 0 4px 24px rgba(28, 28, 26, 0.08);
-
-  /* Transição suave de sombra no hover */
-  transition: box-shadow var(--transicao), transform var(--transicao);
+/* Círculo central com setas */
+.ba-circle {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background-color: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.4);
+  flex-shrink: 0;
+  pointer-events: auto;       /* O círculo recebe eventos de arrastar */
+  cursor: ew-resize;
 }
 
-/* Leve levantamento do cartão ao passar o mouse */
-.card:hover .card-image-wrapper {
-  box-shadow: 0 12px 40px rgba(28, 28, 26, 0.16);
-  transform: translateY(-4px);
+.ba-arrow {
+  font-size: 1.1rem;
+  color: var(--bg);
+  font-weight: 600;
+  line-height: 1;
 }
 
-/* ------ Imagem dentro do cartão ------ */
-.card-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;          /* Preenche o espaço sem distorcer */
-  transition: transform var(--transicao);
-
-  /* Placeholder enquanto não há imagem real:
-     um fundo neutro para visualizar a estrutura */
-  background-color: #D9D4CC;
-}
-
-/* Leve zoom na imagem ao hover */
-.card:hover .card-image {
-  transform: scale(1.04);
-}
-
-/* ------ Overlay escuro que aparece no hover ------ */
-.card-overlay {
+/* Labels "Before" / "After" */
+.ba-label {
   position: absolute;
-  inset: 0;                   /* Cobre toda a área do wrapper */
-  background-color: var(--cor-overlay);
-  opacity: 0;                 /* Invisível por padrão */
-  transition: opacity var(--transicao);
-  border-radius: var(--card-radius);
-}
-
-/* Overlay aparece ao hover */
-.card:hover .card-overlay {
-  opacity: 1;
-}
-
-/* ------ Label abaixo do cartão ------ */
-.card-label {
-  font-family: var(--fonte-corpo);
-  font-weight: 300;
-  font-size: 0.78rem;
-  letter-spacing: 0.18em;     /* Espaçamento entre letras para elegância */
+  bottom: 14px;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--cor-label);
-  transition: color var(--transicao);
+  color: rgba(255,255,255,0.9);
+  background-color: rgba(0,0,0,0.45);
+  padding: 4px 10px;
+  border-radius: 2px;
+  pointer-events: none;
+  transition: opacity 0.3s ease;  /* Desaparece suavemente */
 }
+.ba-label--before { left: 14px; }
+.ba-label--after  { right: 14px; }
 
-/* Label fica mais escuro no hover */
-.card:hover .card-label {
-  color: var(--cor-texto);
+/* Caption abaixo do slider */
+.slider-caption {
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: center;
 }
 
 
 /* ================================================================
-   SEÇÃO 6 — RESPONSIVO (mobile)
-   Adaptações para telas com até 700px de largura.
-   Os cartões empilham verticalmente no celular.
+   SEÇÃO 9 — OUR WORK (galeria)
 ================================================================ */
-@media (max-width: 700px) {
+.work { padding: var(--pad); }
+.work .section-header { max-width: var(--max); margin: 0 auto 56px; }
 
-  /* Cartões um embaixo do outro no mobile */
-  .cards-wrapper {
-    flex-direction: column;
-    align-items: center;
-    gap: 28px;
-  }
+.gallery-grid {
+  max-width: var(--max); margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 300px 300px;
+  gap: 4px;
+}
+.gallery-item { overflow: hidden; background-color: var(--bg-card); }
+.gallery-item--tall  { grid-row: span 2; }
+.gallery-item--wide  { grid-column: span 2; }
 
-  /* Cartão ocupa quase toda a largura da tela */
-  .card {
-    width: min(var(--card-largura), 90vw);
-  }
+.gallery-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: brightness(0.82) saturate(0.85);
+  transition: transform 0.7s var(--ease), filter 0.7s ease;
+}
+.gallery-item:hover .gallery-img { transform: scale(1.05); filter: brightness(0.97) saturate(1); }
 
-  /* Logo um pouco menor no mobile */
-  .logo {
-    width: 200px;
-  }
 
-  /* Menos espaço entre logo e cartões no mobile */
-  .hero {
-    gap: 40px;
-    padding: 40px 20px;
-  }
+/* ================================================================
+   SEÇÃO 10 — CONTACT
+================================================================ */
+.contact {
+  padding: var(--pad);
+  background-color: var(--bg-soft);
+  border-top: 1px solid var(--border-soft);
+}
+.contact-inner {
+  max-width: 580px; margin: 0 auto;
+  text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 26px;
+}
+.contact-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 500;
+  color: var(--cream);
+  line-height: 1.15;
+}
+.contact-sub {
+  font-size: 0.95rem; font-weight: 400; line-height: 1.85;
+  color: var(--text-mid);
+}
+.contact-links {
+  display: flex; align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+  width: 100%; max-width: 460px;
+}
+.contact-link {
+  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 5px;
+  padding: 20px 24px;
+  transition: background-color var(--tr);
+}
+.contact-link:hover { background-color: var(--gold-dim); }
+.contact-link-label { font-size: 0.62rem; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); opacity: 0.8; }
+.contact-link-value { font-size: 0.88rem; font-weight: 400; color: var(--cream); }
+.contact-sep { width: 1px; height: 52px; background-color: var(--border); flex-shrink: 0; }
+
+
+/* ================================================================
+   SEÇÃO 11 — FOOTER
+================================================================ */
+.footer {
+  background-color: var(--bg);
+  border-top: 1px solid var(--border-soft);
+  padding: 36px 24px;
+}
+.footer-inner {
+  max-width: var(--max); margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px; flex-wrap: wrap;
+}
+.footer-logo { width: 110px; filter: invert(1) sepia(0.1) brightness(0.55); opacity: 0.5; }
+.footer-copy { font-size: 0.72rem; font-weight: 400; letter-spacing: 0.1em; color: var(--text-muted); }
+.footer-links { display: flex; gap: 20px; }
+.footer-link { font-size: 0.72rem; font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); transition: color var(--tr); }
+.footer-link:hover { color: var(--text-mid); }
+
+
+/* ================================================================
+   SEÇÃO 12 — ANIMAÇÕES
+================================================================ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes heroZoom {
+  from { transform: scale(1.06); }
+  to   { transform: scale(1.00); }
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 1; }
+}
+
+
+/* ================================================================
+   SEÇÃO 13 — RESPONSIVO MOBILE (até 768px)
+================================================================ */
+@media (max-width: 768px) {
+  :root { --pad: 72px 20px; }
+
+  /* Navbar */
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-mobile { display: flex; }
+  .nav-inner { padding: 16px 20px; }
+  .nav-logo { width: 124px; }
+
+  /* Strip */
+  .strip-inner { flex-direction: column; gap: 18px; padding: 28px 20px; }
+  .strip-divider { width: 36px; height: 1px; }
+
+  /* Services */
+  .service-card { grid-template-columns: 1fr; min-height: auto; }
+  .service-card--alt { direction: ltr; }
+  .service-img-wrap { height: 240px; }
+  .service-body { padding: 32px 24px; }
+
+  /* Sliders — uma coluna */
+  .sliders-grid { grid-template-columns: 1fr; gap: 32px; }
+
+  /* Galeria */
+  .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+  .gallery-item--tall, .gallery-item--wide { grid-row: auto; grid-column: auto; }
+  .gallery-item { height: 190px; }
+
+  /* Contact */
+  .contact-links { flex-direction: column; max-width: 100%; }
+  .contact-link { width: 100%; }
+  .contact-sep { width: 100%; height: 1px; }
+
+  /* Footer */
+  .footer-inner { flex-direction: column; align-items: center; text-align: center; }
 }
