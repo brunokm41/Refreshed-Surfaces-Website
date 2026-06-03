@@ -497,11 +497,32 @@
   <script>
 
     /* ============================================================
-       NAVBAR — fundo sólido ao rolar
+       NAVBAR — esconde ao rolar para baixo, aparece ao rolar para cima
     ============================================================ */
     const navbar = document.getElementById('navbar');
+    let lastScroll = 0;
+
     window.addEventListener('scroll', () => {
-      navbar.classList.toggle('navbar--scrolled', window.scrollY > 60);
+      const currentScroll = window.scrollY;
+
+      /* Sempre visível no topo da página */
+      if (currentScroll <= 80) {
+        navbar.classList.remove('navbar--hidden');
+        navbar.classList.remove('navbar--scrolled');
+        return;
+      }
+
+      /* Rolando para baixo — esconde */
+      if (currentScroll > lastScroll) {
+        navbar.classList.add('navbar--hidden');
+      } 
+      /* Rolando para cima — mostra */
+      else {
+        navbar.classList.remove('navbar--hidden');
+        navbar.classList.add('navbar--scrolled');
+      }
+
+      lastScroll = currentScroll;
     });
 
     /* ============================================================

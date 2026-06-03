@@ -22,7 +22,7 @@
         <li><a href="#transformations" class="nav-link">Transformations</a></li>
       </ul>
       <a href="#hero" class="nav-logo-wrap">
-        <img src="images/logo/other-option/logo-white.svg" alt="Refreshed Surfaces" class="nav-logo" />
+        <img src="images/logo/logo-white.svg" alt="Refreshed Surfaces" class="nav-logo" />
       </a>
       <ul class="nav-links nav-links--right">
         <li><a href="#work" class="nav-link">Our Work</a></li>
@@ -467,7 +467,7 @@
   ============================================================ -->
   <footer class="footer">
     <div class="footer-inner">
-      <img src="images/logo/Logo-White.svg" alt="Refreshed Surfaces" class="footer-logo" />
+      <img src="images/logo/logo-white.svg" alt="Refreshed Surfaces" class="footer-logo" />
       <span class="footer-copy">© 2025 Refreshed Surfaces. North Island, New Zealand.</span>
       <div class="footer-links">
         <a href="mailto:hello@refreshed.co.nz" class="footer-link">hello@refreshed.co.nz</a>
@@ -497,11 +497,32 @@
   <script>
 
     /* ============================================================
-       NAVBAR — fundo sólido ao rolar
+       NAVBAR — esconde ao rolar para baixo, aparece ao rolar para cima
     ============================================================ */
     const navbar = document.getElementById('navbar');
+    let lastScroll = 0;
+
     window.addEventListener('scroll', () => {
-      navbar.classList.toggle('navbar--scrolled', window.scrollY > 60);
+      const currentScroll = window.scrollY;
+
+      /* Sempre visível no topo da página */
+      if (currentScroll <= 80) {
+        navbar.classList.remove('navbar--hidden');
+        navbar.classList.remove('navbar--scrolled');
+        return;
+      }
+
+      /* Rolando para baixo — esconde */
+      if (currentScroll > lastScroll) {
+        navbar.classList.add('navbar--hidden');
+      } 
+      /* Rolando para cima — mostra */
+      else {
+        navbar.classList.remove('navbar--hidden');
+        navbar.classList.add('navbar--scrolled');
+      }
+
+      lastScroll = currentScroll;
     });
 
     /* ============================================================

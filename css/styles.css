@@ -150,10 +150,7 @@ ul { list-style: none; }
    SEÇÃO 4 — NAVBAR
 ================================================================ */
 .navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  position: relative;              /* Rola normalmente com a página */
   width: 100%;
   z-index: 9999;
   background: #14110f;
@@ -225,11 +222,13 @@ ul { list-style: none; }
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;                    /* Contém a imagem dentro do hero */
+  isolation: isolate;                  /* Cria stacking context sem quebrar o fixed da navbar */
 }
 .hero-bg {
-  position: fixed;                     /* Fixed junto com a navbar — fica no lugar */
+  position: absolute;                  /* Contido dentro do hero */
   inset: 0;
-  z-index: -1;                         /* Atrás de tudo */
+  z-index: 0;
 }
 .hero-bg-img {
   width: 100%; height: 100%;
@@ -237,7 +236,6 @@ ul { list-style: none; }
 }
 .hero-overlay {
   position: absolute; inset: 0; z-index: 1;
-  /* Overlay mais escuro compensa a remoção do filter na imagem */
   background: linear-gradient(160deg, rgba(14,11,9,0.45) 0%, rgba(14,11,9,0.72) 55%, rgba(14,11,9,0.90) 100%);
 }
 .hero-content {
