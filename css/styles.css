@@ -69,7 +69,7 @@ body {
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
   padding-top: 0;                       /* Navbar é fixed, não empurra o conteúdo */
 }
 a { text-decoration: none; color: inherit; }
@@ -150,10 +150,11 @@ ul { list-style: none; }
    SEÇÃO 4 — NAVBAR
 ================================================================ */
 .navbar {
-  position: relative;              /* Rola normalmente com a página */
+  position: relative;
   width: 100%;
   z-index: 9999;
   background: #14110f;
+  /* isolation: isolate; */
 }
 .navbar--scrolled {
   background: #14110f;
@@ -169,6 +170,9 @@ ul { list-style: none; }
 }
 
 .nav-logo { width: 148px; height: auto; transition: opacity 0.3s; }
+/* Desktop — mostra logo completa, esconde ícone */
+.nav-logo--mobile  { display: none; }
+.nav-logo--desktop { display: block; }
 .nav-logo:hover { opacity: 0.75; }
 
 .nav-links { display: flex; align-items: center; gap: 28px; }
@@ -204,9 +208,22 @@ ul { list-style: none; }
 .nav-hamburger--open span:nth-child(2) { opacity: 0; }
 .nav-hamburger--open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
-.nav-mobile { display: none; flex-direction: column; background: #14110f; padding: 0 24px 20px; border-top: 1px solid var(--border-soft); overflow: hidden; max-height: 0; transition: max-height 0.4s ease; }
-.nav-mobile--open { max-height: 400px; }
-.nav-mobile-link { font-size: 0.85rem; font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase; color: #7e7f83; padding: 15px 0; border-bottom: 1px solid var(--border-soft); transition: color var(--tr); }
+.nav-mobile { 
+  display: none; 
+  flex-direction: column; 
+  background: #14110f; 
+  padding: 0 24px 20px; 
+  overflow: hidden; 
+  max-height: 0;
+  pointer-events: none;
+  transition: max-height 0.4s ease;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 9998;
+}
+.nav-mobile--open { display: flex; max-height: 400px; pointer-events: all; }
 .nav-mobile-link:hover { color: #f3f3f4; }
 .nav-mobile-cta { color: var(--gold); border-bottom: none; }
 
@@ -217,13 +234,13 @@ ul { list-style: none; }
 .hero {
   position: relative;
   width: 100%;
-  height: 100vh;
-  min-height: 620px;
+  height: calc(100vh - 88px);
+  min-height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;                    /* Contém a imagem dentro do hero */
-  isolation: isolate;                  /* Cria stacking context sem quebrar o fixed da navbar */
+  overflow: hidden;
+  isolation: isolate;
 }
 .hero-bg {
   position: absolute;                  /* Contido dentro do hero */
@@ -242,24 +259,24 @@ ul { list-style: none; }
   position: relative; z-index: 2;
   text-align: center;
   max-width: 780px;
-  /* padding vertical garante que tudo fica visível mesmo em telas baixas */
-  padding: clamp(80px, 12vh, 120px) 32px clamp(60px, 8vh, 80px);
+  padding: 0 32px;
   display: flex; flex-direction: column; align-items: center;
-  gap: 0;                                  /* Gap individual por elemento abaixo */
+  gap: 0;
 }
 .hero-content .eyebrow {
   margin-bottom: clamp(16px, 2.5vh, 28px); /* Espaço após eyebrow */
 }
 .hero-title {
   font-family: var(--font-display);
-  font-size: clamp(2.8rem, 5.5vw, 5rem);
+  font-size: clamp(2.4rem, 4.5vw, 5rem);
   font-weight: 500;
   line-height: 1.1;
   color: var(--cream);
-  white-space: nowrap;
+  white-space: normal;
   margin-bottom: clamp(20px, 3vh, 36px);   /* Espaço após título */
   animation: fadeUp 0.9s ease 0.3s both;
 }
+
 .hero-subtitle {
   font-size: 1rem;
   font-weight: 400;
@@ -292,6 +309,7 @@ ul { list-style: none; }
 .strip-number { font-family: var(--font-display); font-size: 0.85rem; color: var(--gold); opacity: 0.8; }
 .strip-text { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-mid); }
 .strip-divider { width: 1px; height: 28px; background-color: var(--border-soft); flex-shrink: 0; }
+
 
 
 /* ================================================================
@@ -585,17 +603,18 @@ ul { list-style: none; }
 /* ================================================================
    SEÇÃO 13 — RESPONSIVO MOBILE (até 768px)
 ================================================================ */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   :root { --pad: 72px 20px; }
 
   /* Navbar */
   .nav-links { display: none; }
   .nav-hamburger { display: flex; }
-  .nav-mobile { display: flex; }
   .nav-inner { padding: 16px 20px; }
-  .nav-logo { width: 124px; }
-
-  /* Hero — mobile: quebra linha, reduz fonte e espaçamentos */
+  .nav-logo--desktop { width: 120px; }
+  .nav-mobile { position: absolute; }
+  
+  /* Hero — mobile */
+  .hero { height: calc(100vh - 76px); min-height: 480px; }
   .hero-title { white-space: normal; font-size: clamp(2rem, 9vw, 3rem); margin-bottom: 16px; }
   .hero-content { padding: 80px 20px 48px; }
   .hero-content .eyebrow { margin-bottom: 12px; }
@@ -1037,4 +1056,8 @@ ul { list-style: none; }
   /* Lightbox botões */
   .lightbox-prev { left: 8px; }
   .lightbox-next { right: 8px; }
+
+  /* Mobile — mostra ícone, esconde logo completa */
+  .nav-logo--desktop { display: none; }
+  .nav-logo--mobile  { display: block; height: auto;  }
 }
