@@ -241,6 +241,7 @@ ul { list-style: none; }
   justify-content: center;
   overflow: hidden;
   isolation: isolate;
+  padding: 0 32px;
 }
 .hero-bg {
   position: absolute;                  /* Contido dentro do hero */
